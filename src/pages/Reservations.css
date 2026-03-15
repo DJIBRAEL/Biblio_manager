@@ -1,0 +1,66 @@
+/* Reservations Page Styles */
+.reservations-page {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.reservation-overview {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.stats-header-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.stat-mini-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 20px;
+}
+
+.stat-icon-mini {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.bg-orange-light { background-color: #ffedd5; color: #c2410c; }
+.bg-green-light { background-color: #dcfce7; color: #15803d; }
+.bg-red-light { background-color: #fee2e2; color: #b91c1c; }
+
+.stat-content-mini {
+  display: flex;
+  flex-direction: column;
+}
+
+.stat-label {
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+.stat-value {
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.reservation-list-card {
+  background: white;
+  border-radius: var(--radius-md);
+  padding: 24px;
+  box-shadow: var(--shadow-sm);
+}
+
+@media (max-width: 768px) {
+  .stats-header-grid {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,34 @@
+/* Borrowings Page Styles */
+.borrowings-page {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.borrowings-tabs h3 {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 12px;
+  color: var(--primary);
+}
+
+.mt-8 {
+  margin-top: 32px;
+}
+
+.text-xs {
+  font-size: 12px;
+}
+
+.btn-sm {
+  padding: 4px 10px;
+  font-size: 12px;
+}
+
+.row-late td {
+  background-color: rgba(239, 68, 68, 0.05);
+}
+
+.row-late strong {
+  color: var(--danger);
+}

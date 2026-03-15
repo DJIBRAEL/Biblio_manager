@@ -1,0 +1,81 @@
+.header {
+  background-color: var(--primary);
+  color: var(--text-inverse);
+  padding: 0 40px;
+  height: 64px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+}
+
+.top-header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.header-left h1 {
+  font-size: 28px;
+  font-weight: 800;
+  color: var(--text-inverse);
+  margin-bottom: 0;
+  letter-spacing: -0.02em;
+}
+
+.menu-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  border-radius: var(--radius-sm);
+  width: 36px;
+  height: 36px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.menu-toggle:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.header-left p {
+  font-size: 13px;
+  color: var(--text-inverse-muted);
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.user-profile {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: var(--radius-md);
+  transition: background-color 0.2s;
+}
+
+.user-profile:hover {
+  background-color: var(--bg-main);
+}
+
+.user-name {
+  font-weight: 500;
+  font-size: 14px;
+}
+
+.user-avatar {
+  color: var(--text-inverse-muted);
+}
