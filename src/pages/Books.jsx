@@ -374,16 +374,11 @@ const BookDetail = ({ book, copies, borrowings, users, onBack, onEdit, onDelete,
           </table>
 
           <div className="bd-actions">
-            <div className="bd-actions-left">
-              <button className="bd-btn bd-btn-primary" onClick={() => onEdit(book.id)}>
-                <Edit size={15} /> Modifier
-              </button>
-              <button className="bd-btn bd-btn-danger" onClick={() => onDelete(book.id)}>
-                <Trash2 size={15} /> Supprimer
-              </button>
-            </div>
-            <button className="bd-btn bd-btn-teal" onClick={onAddCopy}>
-              <PlusCircle size={15} /> Ajouter un exemplaire
+            <button className="bd-btn bd-btn-primary" onClick={() => onEdit(book.id)}>
+              <Edit size={15} /> Modifier
+            </button>
+            <button className="bd-btn bd-btn-danger" onClick={() => onDelete(book.id)}>
+              <Trash2 size={15} /> Supprimer
             </button>
           </div>
         </div>
@@ -399,18 +394,16 @@ const BookDetail = ({ book, copies, borrowings, users, onBack, onEdit, onDelete,
             <table className="bd-copies-table">
               <thead>
                 <tr>
-                  <th>N°</th>
-                  <th>Code barre ◇</th>
-                  <th>Etat ◇</th>
-                  <th>Statuts ◇</th>
-                  <th>Emprunteur ◇</th>
+                  <th>Code barre</th>
+                  <th>État</th>
+                  <th>Statut</th>
+                  <th>Emprunteur</th>
                 </tr>
               </thead>
               <tbody>
-                {bookCopies.map((copy, index) => (
+                {bookCopies.map((copy) => (
                   <tr key={copy.id}>
-                    <td className="bd-num">{index + 1}</td>
-                    <td><code style={{ fontFamily: 'monospace', fontSize: 13 }}>{copy.code || copy.id}</code></td>
+                    <td><code style={{ fontFamily: 'monospace', fontSize: 13, background: 'var(--table-header-bg)', padding: '2px 6px', borderRadius: 4 }}>{copy.code || copy.id}</code></td>
                     <td>{copy.etat || '—'}</td>
                     <td>
                       <span className={`bd-status-badge ${copy.status === 'Disponible' ? 'bd-badge-disponible' : 'bd-badge-prete'}`}>

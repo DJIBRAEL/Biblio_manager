@@ -90,8 +90,7 @@ const CopyForm = ({ mode, books, initialData = null, onSave, onCancel }) => {
     code: '',
     etat: 'Neuf',
     status: 'Disponible',
-    acquisitionYear: new Date().getFullYear(),
-    quantity: 1
+    acquisitionYear: new Date().getFullYear()
   });
 
   const handleSubmit = (e) => {
@@ -160,20 +159,7 @@ const CopyForm = ({ mode, books, initialData = null, onSave, onCancel }) => {
               <label className="form-label">Année d'acquisition</label>
               <input type="number" className="input-field-premium" value={formData.acquisitionYear} onChange={e => setFormData({ ...formData, acquisitionYear: e.target.value })} />
             </div>
-            {mode === 'add' ? (
-              <div className="input-group flex-grow" style={{ flex: 1 }}>
-                <label className="form-label">Nombre d'exemplaires</label>
-                <input 
-                  type="number" 
-                  className="input-field-premium" 
-                  min="1" 
-                  max="50" 
-                  value={formData.quantity} 
-                  onChange={e => setFormData({ ...formData, quantity: parseInt(e.target.value) || 1 })} 
-                  required 
-                />
-              </div>
-            ) : <div className="input-group flex-grow" style={{ flex: 1 }}></div>}
+            <div className="input-group flex-grow" style={{ flex: 1 }}></div>
           </div>
         </div>
         

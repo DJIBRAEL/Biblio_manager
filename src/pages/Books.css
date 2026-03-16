@@ -733,7 +733,7 @@
 /* Action Buttons */
 .bd-actions {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
   margin-top: 20px;
   padding-top: 16px;
@@ -826,16 +826,17 @@
 }
 
 .bd-copies-table th {
-  padding: 12px 16px;
+  padding: 13px 24px;
   text-align: left;
   font-size: 13px;
   font-weight: 700;
   color: var(--text-main);
   border-bottom: 2px solid var(--border-light);
+  white-space: nowrap;
 }
 
 .bd-copies-table td {
-  padding: 13px 16px;
+  padding: 14px 24px;
   font-size: 14px;
   color: var(--text-main);
   border-bottom: 1px solid var(--border-light);
