@@ -44,38 +44,36 @@ const UserList = ({ users, searchTerm, setSearchTerm, onDelete }) => {
         </div>
       </div>
 
-      <div className="header-with-icon">
-        <div className="icon-box">
-          <UsersIcon size={24} />
-        </div>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '8px' }}>
         <div className="header-content">
-          <h1>Liste des utilisateurs</h1>
-          <p>Gérez les membres de la bibliothèque et leurs accès.</p>
+          <h1 style={{ fontSize: '2rem', fontWeight: '800', color: 'var(--primary)', marginBottom: '8px' }}>Communauté</h1>
+          <p style={{ fontSize: '1.1rem', color: 'var(--text-muted)' }}>Gérez les membres et leurs privilèges d'accès.</p>
+        </div>
+        <div style={{ display: 'flex', gap: '12px' }}>
+          <button className="btn btn-primary" style={{ padding: '12px 24px', borderRadius: '14px' }} onClick={() => navigate('/users/add')}>
+            <UserPlus size={20} />
+            <span>Ajouter un membre</span>
+          </button>
         </div>
       </div>
-      <div className="card">
-      <div className="toolbar">
-        <div className="header-content">
-          <h2 style={{ fontSize: '1.25rem', fontWeight: '700', color: 'var(--text-main)', margin: 0 }}>Gérer les membres</h2>
-        </div>
-        <div style={{ display: 'flex', gap: '16px', alignItems: 'center' }}>
+      <div className="card" style={{ padding: '0', overflow: 'hidden', border: 'none', background: 'transparent', boxShadow: 'none' }}>
+        <div className="toolbar" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', background: 'white', padding: '24px', borderRadius: 'var(--radius-lg) var(--radius-lg) 0 0', border: '1px solid var(--border-light)', marginBottom: '0' }}>
+          <div className="header-content">
+            <h2 style={{ fontSize: '1.25rem', fontWeight: '700', color: 'var(--text-main)', margin: 0 }}>Répertoire des membres</h2>
+            <p style={{ fontSize: '13px', color: 'var(--text-muted)', marginTop: '4px' }}>Liste exhaustive des utilisateurs enregistrés.</p>
+          </div>
           <div className="search-bar">
             <Search size={18} className="search-icon" />
             <input
               type="text"
-              placeholder="Rechercher..."
+              placeholder="Rechercher par nom, email..."
               className="search-input"
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
             />
           </div>
-          <button className="btn btn-primary" onClick={() => navigate('/users/add')}>
-            <UserPlus size={18} />
-            <span>Nouveau</span>
-          </button>
         </div>
-      </div>
-      <div className="table-container">
+        <div className="table-container" style={{ borderRadius: '0 0 var(--radius-lg) var(--radius-lg)', borderTop: 'none' }}>
         <table>
           <thead>
             <tr>
@@ -167,133 +165,111 @@ const UserForm = ({ onSave, onCancel }) => {
   };
 
   return (
-    <div className="form-card-premium">
-      <div className="form-header-premium">
-        <div className="icon-box" style={{ background: 'var(--primary)', boxShadow: '0 8px 16px rgba(20, 73, 85, 0.2)' }}>
-          <UserPlus size={28} />
-        </div>
+    <div className="form-card-premium" style={{ background: 'transparent', boxShadow: 'none', border: 'none' }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: '20px', marginBottom: '32px' }}>
+        <button className="icon-btn" onClick={onCancel} title="Retour" style={{ width: '48px', height: '48px', borderRadius: '14px' }}>
+          <ChevronRight size={24} style={{ transform: 'rotate(180deg)' }} />
+        </button>
         <div className="header-content">
-          <h2 style={{ fontSize: '1.75rem', fontWeight: '800', color: 'var(--text-main)', margin: 0 }}>Nouveau membre</h2>
-          <p style={{ margin: '4px 0 0', color: 'var(--text-muted)', fontSize: '15px' }}>Inscrivez un nouvel utilisateur dans la base de données.</p>
+          <h2 style={{ fontSize: '2rem', fontWeight: '800', color: 'var(--primary)', margin: 0 }}>Nouveau Membre</h2>
+          <p style={{ margin: '4px 0 0', color: 'var(--text-muted)', fontSize: '1.1rem' }}>Veuillez renseigner les informations d'identification du nouvel utilisateur.</p>
         </div>
       </div>
 
       <form onSubmit={handleSubmit} className="form-body-premium" style={{ gap: '40px', display: 'flex', flexDirection: 'column' }}>
         <div className="form-group-wrapper">
-          <span className="group-tag-premium">Information Personnelle</span>
-          <div className="input-row" style={{ display: 'flex', gap: '24px', marginBottom: '32px', marginTop: '10px' }}>
-            <div className="input-group" style={{ width: '140px' }}>
-              <label className="form-label">Civilité</label>
-              <select className="input-field-premium" value={formData.civility} onChange={e => setFormData({ ...formData, civility: e.target.value })}>
-                <option value="M.">Monsieur</option>
-                <option value="Mme">Madame</option>
-                <option value="Mlle">Mademoiselle</option>
-              </select>
-            </div>
-            <div className="input-group flex-grow" style={{ flex: 1 }}>
-              <label className="form-label">Prénom</label>
-              <input type="text" className="input-field-premium" value={formData.firstName} onChange={e => setFormData({ ...formData, firstName: e.target.value })} placeholder="Prénom" required />
-            </div>
-            <div className="input-group flex-grow" style={{ flex: 1 }}>
-              <label className="form-label">Nom de famille</label>
-              <input type="text" className="input-field-premium" value={formData.lastName} onChange={e => setFormData({ ...formData, lastName: e.target.value })} placeholder="Nom" required />
-            </div>
-          </div>
-
-          <div className="input-row" style={{ display: 'flex', gap: '24px' }}>
-            <div className="input-group flex-grow" style={{ flex: 1 }}>
-              <label className="form-label">Date de naissance</label>
-              <div style={{ position: 'relative' }}>
-                <Calendar size={18} style={{ position: 'absolute', right: '12px', top: '50%', transform: 'translateY(-50%)', color: 'var(--text-muted)', pointerEvents: 'none' }} />
-                <input type="date" className="input-field-premium" value={formData.birthday} onChange={e => setFormData({ ...formData, birthday: e.target.value })} />
+          <span className="group-tag-premium">Identification Membre</span>
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '32px', marginTop: '12px' }}>
+            <div className="input-group">
+              <label className="form-label">Identité & Civilité</label>
+              <div style={{ display: 'flex', gap: '8px' }}>
+                <select className="input-field-premium" style={{ width: '130px' }} value={formData.civility} onChange={e => setFormData({ ...formData, civility: e.target.value })}>
+                  <option value="M.">Mr</option>
+                  <option value="Mme">Mme</option>
+                  <option value="Mlle">Mlle</option>
+                </select>
+                <input type="text" className="input-field-premium" value={formData.firstName} onChange={e => setFormData({ ...formData, firstName: e.target.value })} placeholder="Prénom" required />
               </div>
             </div>
-            <div className="input-group flex-grow" style={{ flex: 1 }}>
+            <div className="input-group">
+              <label className="form-label">Nom de famille</label>
+              <input type="text" className="input-field-premium" value={formData.lastName} onChange={e => setFormData({ ...formData, lastName: e.target.value })} placeholder="Ex: TRAORÉ" required />
+            </div>
+
+            <div className="input-group">
+              <label className="form-label">Date de naissance</label>
+              <div className="input-icon-wrapper-premium">
+                <input type="date" className="input-field-premium input-with-icon-premium" value={formData.birthday} onChange={e => setFormData({ ...formData, birthday: e.target.value })} />
+                <Calendar size={18} className="input-icon-premium" />
+              </div>
+            </div>
+            <div className="input-group">
               <label className="form-label">Nationalité</label>
-              <div style={{ position: 'relative' }}>
-                <Globe size={18} style={{ position: 'absolute', right: '12px', top: '50%', transform: 'translateY(-50%)', color: 'var(--text-muted)', pointerEvents: 'none' }} />
-                <select className="input-field-premium" value={formData.nationality} onChange={e => setFormData({ ...formData, nationality: e.target.value })}>
+              <div className="input-icon-wrapper-premium">
+                <select className="input-field-premium input-with-icon-premium" value={formData.nationality} onChange={e => setFormData({ ...formData, nationality: e.target.value })}>
                   <option value="Mali">Mali</option>
                   <option value="Sénégal">Sénégal</option>
                   <option value="Côte d'Ivoire">Côte d'Ivoire</option>
                   <option value="Bénin">Bénin</option>
                   <option value="Burkina Faso">Burkina Faso</option>
-                  <option value="Cameroon">Cameroun</option>
-                  <option value="Congo">Congo</option>
                 </select>
+                <Globe size={18} className="input-icon-premium" />
               </div>
             </div>
           </div>
         </div>
 
         <div className="form-group-wrapper">
-          <span className="group-tag-premium">Coordonnées & Statut</span>
-          <div className="input-row" style={{ display: 'flex', gap: '24px', marginBottom: '32px', marginTop: '10px' }}>
-            <div className="input-group flex-2" style={{ flex: 2 }}>
-              <label className="form-label">Courriel professionnel</label>
-              <div style={{ position: 'relative' }}>
-                <Mail size={18} style={{ position: 'absolute', right: '12px', top: '50%', transform: 'translateY(-50%)', color: 'var(--text-muted)', pointerEvents: 'none' }} />
-                <input type="email" className="input-field-premium" value={formData.email} onChange={e => setFormData({ ...formData, email: e.target.value })} placeholder="email@exemple.com" required />
+          <span className="group-tag-premium">Coordonnées & Système</span>
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '32px', marginTop: '12px' }}>
+            <div className="input-group">
+              <label className="form-label">E-mail professionnel</label>
+              <div className="input-icon-wrapper-premium">
+                <input type="email" className="input-field-premium input-with-icon-premium" value={formData.email} onChange={e => setFormData({ ...formData, email: e.target.value })} placeholder="email@univ.edu.ml" required />
+                <Mail size={18} className="input-icon-premium" />
               </div>
             </div>
-            <div className="input-group flex-1" style={{ flex: 1 }}>
-              <label className="form-label">Téléphone</label>
-              <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-                <select
-                  className="input-field-premium"
-                  value={formData.countryCode}
-                  onChange={e => setFormData({ ...formData, countryCode: e.target.value })}
-                  style={{ width: "110px", paddingRight: '8px' }}
-                >
-                  <option value="+221">🇸🇳 +221</option>
+            <div className="input-group">
+              <label className="form-label">Numéro de Téléphone</label>
+              <div style={{ display: "flex", gap: "8px" }}>
+                <select className="input-field-premium" value={formData.countryCode} onChange={e => setFormData({ ...formData, countryCode: e.target.value })} style={{ width: '110px' }}>
                   <option value="+223">🇲🇱 +223</option>
+                  <option value="+221">🇸🇳 +221</option>
                   <option value="+225">🇨🇮 +225</option>
-                  <option value="+229">🇧🇯 +229</option>
-                  <option value="+226">🇧🇫 +226</option>
-                  <option value="+237">🇨🇲 +237</option>
-                  <option value="+242">🇨🇬 +242</option>
                 </select>
-                <div style={{ position: 'relative', flex: 1 }}>
-                  <Phone size={16} style={{ position: 'absolute', right: '12px', top: '50%', transform: 'translateY(-50%)', color: 'var(--text-muted)', pointerEvents: 'none' }} />
-                  <input
-                    type="text"
-                    className="input-field-premium"
-                    value={formData.phone}
-                    onChange={e => setFormData({ ...formData, phone: e.target.value })}
-                    placeholder="Numéro"
-                  />
+                <div className="input-icon-wrapper-premium" style={{ flex: 1 }}>
+                  <input type="text" className="input-field-premium input-with-icon-premium" value={formData.phone} onChange={e => setFormData({ ...formData, phone: e.target.value })} placeholder="00 00 00 00" />
+                  <Phone size={18} className="input-icon-premium" />
                 </div>
               </div>
             </div>
-          </div>
 
-          <div className="input-row" style={{ display: 'flex', gap: '24px' }}>
-            <div className="input-group flex-2" style={{ flex: 2 }}>
-              <label className="form-label">Adresse de résidence</label>
-              <div style={{ position: 'relative' }}>
-                <MapPin size={18} style={{ position: 'absolute', right: '12px', top: '50%', transform: 'translateY(-50%)', color: 'var(--text-muted)', pointerEvents: 'none' }} />
-                <input type="text" className="input-field-premium" value={formData.address} onChange={e => setFormData({ ...formData, address: e.target.value })} placeholder="Adresse complète..." />
+            <div className="input-group">
+              <label className="form-label">Adresse physique</label>
+              <div className="input-icon-wrapper-premium">
+                <input type="text" className="input-field-premium input-with-icon-premium" value={formData.address} onChange={e => setFormData({ ...formData, address: e.target.value })} placeholder="Quartier, Rue, Porte..." />
+                <MapPin size={18} className="input-icon-premium" />
               </div>
             </div>
-            <div className="input-group flex-1" style={{ flex: 1 }}>
-              <label className="form-label">Catégorie d'utilisateur</label>
-              <div style={{ position: 'relative' }}>
-                <ShieldCheck size={18} style={{ position: 'absolute', right: '12px', top: '50%', transform: 'translateY(-50%)', color: 'var(--text-muted)', pointerEvents: 'none' }} />
-                <select className="input-field-premium" value={formData.type} onChange={e => setFormData({ ...formData, type: e.target.value })}>
-                  <option value="Etudiant">Étudiant</option>
-                  <option value="Professeur">Professeur</option>
-                  <option value="Personnel administratif">Personnel administratif</option>
+            <div className="input-group">
+              <label className="form-label">Catégorie de membre</label>
+              <div className="input-icon-wrapper-premium">
+                <select className="input-field-premium input-with-icon-premium" value={formData.type} onChange={e => setFormData({ ...formData, type: e.target.value })}>
+                  <option value="Etudiant">Étudiant (LMD)</option>
+                  <option value="Professeur">Professeur / Enseignant</option>
+                  <option value="Personnel administratif">Staff Administratif</option>
                 </select>
+                <ShieldCheck size={18} className="input-icon-premium" />
               </div>
             </div>
           </div>
         </div>
 
-        <div className="form-footer-premium" style={{ background: 'transparent', padding: '10px 0 0', border: 'none' }}>
-          <button type="button" className="btn-cancel-simple" onClick={onCancel}>Annuler</button>
-          <button type="submit" className="btn-submit-simple">
-            <span>Enregistrer le nouveau membre</span>
-            <ChevronRight size={20} />
+        <div className="form-footer-premium" style={{ display: 'flex', justifyContent: 'flex-end', gap: '20px', padding: '0 8px', marginTop: '-52px' }}>
+          <button type="button" className="btn-cancel-simple" onClick={onCancel}>Ignorer</button>
+          <button type="submit" className="btn-submit-simple" style={{ borderRadius: '14px' }}>
+            <UserPlus size={20} />
+            <span>Valider l'inscription</span>
           </button>
         </div>
       </form>

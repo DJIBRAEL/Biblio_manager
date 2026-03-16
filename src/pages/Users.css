@@ -485,72 +485,121 @@
 
 .form-group-wrapper {
   background: white;
-  padding: 32px;
-  border-radius: var(--radius-lg);
+  padding: 40px;
+  border-radius: 20px;
   border: 1px solid var(--border-light);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
   position: relative;
   transition: all 0.3s ease;
+  margin-bottom: 32px;
+}
+
+.form-group-wrapper-simple {
+  background: transparent;
+  padding: 0 8px;
+  border: none;
+  box-shadow: none;
+  position: relative;
+  margin-bottom: 48px;
 }
 
 .form-group-wrapper:hover {
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
-  border-color: rgba(20, 73, 85, 0.1);
+  box-shadow: 0 10px 30px rgba(20, 73, 85, 0.05);
+  border-color: rgba(20, 73, 85, 0.15);
+}
+
+.group-tag-premium-simple {
+  display: block;
+  font-size: 14px;
+  font-weight: 800;
+  color: var(--primary);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 24px;
+  padding-left: 4px;
+  border-left: 4px solid var(--primary);
 }
 
 .group-tag-premium {
   position: absolute;
-  top: -12px;
+  top: -14px;
   left: 32px;
   background: var(--primary);
   color: white;
-  padding: 4px 16px;
-  border-radius: 6px;
+  padding: 6px 18px;
+  border-radius: 8px;
   font-size: 11px;
-  font-weight: 700;
+  font-weight: 800;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
-  box-shadow: 0 4px 8px rgba(20, 73, 85, 0.2);
-  margin-bottom: 0;
+  letter-spacing: 0.08em;
+  box-shadow: 0 4px 12px rgba(20, 73, 85, 0.25);
+  z-index: 10;
+}
+
+.input-field-premium {
+  width: 100%;
+  padding: 14px 16px;
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+  font-size: 15px;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  background: #f8fafc;
+  color: var(--text-main);
+  font-weight: 500;
+}
+
+.input-field-premium:focus {
+  outline: none;
+  border-color: var(--primary);
+  background: white;
+  box-shadow: 0 0 0 4px rgba(20, 73, 85, 0.1);
+  transform: translateY(-1px);
 }
 
 .form-label {
-  font-weight: 600 !important;
+  display: block;
+  font-weight: 700 !important;
   color: var(--text-muted) !important;
-  font-size: 12px !important;
+  font-size: 11px !important;
   text-transform: uppercase;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.05em;
+  margin-bottom: 10px !important;
 }
 
 .btn-submit-simple {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
   background: var(--primary);
   color: white;
   border: none;
-  padding: 14px 32px;
-  border-radius: 12px;
+  padding: 16px 40px;
+  border-radius: 16px;
   font-weight: 700;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: 0 4px 12px rgba(20, 73, 85, 0.2);
+  font-size: 16px;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  box-shadow: 0 8px 16px rgba(20, 73, 85, 0.2);
 }
 
 .btn-submit-simple:hover {
   background: var(--primary-light);
-  transform: translateY(-2px) scale(1.02);
-  box-shadow: 0 8px 20px rgba(20, 73, 85, 0.3);
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 12px 24px rgba(20, 73, 85, 0.3);
 }
 
 .btn-cancel-simple {
   color: var(--text-muted);
-  font-weight: 600;
-  padding: 12px 24px;
+  font-weight: 700;
+  font-size: 15px;
+  padding: 12px 32px;
+  border-radius: 12px;
   transition: all 0.2s;
+  background: transparent;
 }
 
 .btn-cancel-simple:hover {
   color: var(--danger);
+  background: rgba(239, 68, 68, 0.05);
 }
 
 @media (max-width: 768px) {
@@ -580,4 +629,34 @@
   .search-input:focus {
     width: 100%;
   }
+}
+
+.input-icon-wrapper-premium {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.input-icon-premium {
+  position: absolute;
+  left: 18px;
+  color: var(--primary);
+  opacity: 0.7;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.input-field-premium:focus + .input-icon-premium {
+  opacity: 1;
+  color: var(--primary-light);
+  transform: scale(1.1);
+}
+
+.input-with-icon-premium {
+  padding-left: 52px !important;
 }
