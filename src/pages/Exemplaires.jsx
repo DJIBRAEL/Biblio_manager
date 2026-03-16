@@ -100,46 +100,53 @@ const CopyForm = ({ mode, books, initialData = null, onSave, onCancel }) => {
   };
 
   return (
-    <div className="card form-card">
-      <div className="header-with-icon" style={{ padding: '12px 20px', borderBottom: '1px solid #f1f5f9' }}>
-        <div className="icon-box" style={{ background: mode === 'add' ? 'var(--success)' : 'var(--primary)' }}>
-          {mode === 'add' ? <PlusCircle size={24} /> : <Edit size={24} />}
+    <div className="form-card-premium">
+      <div className="form-header-premium">
+        <div className="icon-box" style={{ background: mode === 'add' ? 'var(--primary)' : 'var(--primary-light)' }}>
+          {mode === 'add' ? <PlusCircle size={28} /> : <Edit size={28} />}
         </div>
         <div className="header-content">
-          <h2>{mode === 'add' ? 'Ajouter un exemplaire' : 'Modifier l\'exemplaire'}</h2>
-          <p>{mode === 'add' ? 'Enregistrez une nouvelle copie dans le système.' : 'Mettez à jour l\'état ou la localisation.'}</p>
+          <h2 style={{ fontSize: '1.5rem', fontWeight: '700', color: 'var(--text-main)', margin: 0 }}>
+            {mode === 'add' ? 'Nouvel Exemplaire' : 'Modifier l\'exemplaire'}
+          </h2>
+          <p style={{ margin: '4px 0 0', color: 'var(--text-muted)' }}>
+            {mode === 'add' ? 'Enregistrez une nouvelle copie physique dans le catalogue.' : 'Mettez à jour les informations de cet exemplaire.'}
+          </p>
         </div>
       </div>
-      <form onSubmit={handleSubmit} className="mt-4">
-        <div className="form-grid">
-          <div className="input-group full-width">
-            <label>Livre associé</label>
-            <select className="input-field" value={formData.bookId} onChange={e => setFormData({ ...formData, bookId: e.target.value })} required>
-              <option value="">Sélectionner un livre...</option>
-              {books.map(b => (
-                <option key={b.id} value={b.id}>{b.title} (ISBN: {b.isbn})</option>
-              ))}
-            </select>
-          </div>
-          <div className="form-row full-width">
-            <div className="input-group">
-              <label>Code Exemplaire</label>
-              <input type="text" className="input-field" value={formData.code} onChange={e => setFormData({ ...formData, code: e.target.value })} placeholder="Ex: INV-001" required />
+      <form onSubmit={handleSubmit} className="form-body-premium">
+        <div className="form-group-wrapper">
+          <span className="group-tag-premium">Information de l'ouvrage</span>
+          
+          <div className="input-row" style={{ display: 'flex', gap: '24px', marginBottom: '24px' }}>
+            <div className="input-group flex-grow" style={{ flex: 1 }}>
+              <label className="form-label">Livre associé</label>
+              <select className="input-field-premium" value={formData.bookId} onChange={e => setFormData({ ...formData, bookId: e.target.value })} required>
+                <option value="">Sélectionner un livre...</option>
+                {books.map(b => (
+                  <option key={b.id} value={b.id}>{b.title} (ISBN: {b.isbn})</option>
+                ))}
+              </select>
+            </div>
+            <div className="input-group flex-grow" style={{ flex: 1 }}>
+              <label className="form-label">Code Exemplaire</label>
+              <input type="text" className="input-field-premium" value={formData.code} onChange={e => setFormData({ ...formData, code: e.target.value })} placeholder="Ex: INV-001" required />
             </div>
           </div>
-          <div className="form-row full-width">
-            <div className="input-group">
-              <label>État</label>
-              <select className="input-field" value={formData.etat} onChange={e => setFormData({ ...formData, etat: e.target.value })}>
+
+          <div className="input-row" style={{ display: 'flex', gap: '24px', marginBottom: '24px' }}>
+            <div className="input-group flex-grow" style={{ flex: 1 }}>
+              <label className="form-label">État</label>
+              <select className="input-field-premium" value={formData.etat} onChange={e => setFormData({ ...formData, etat: e.target.value })}>
                 <option value="Neuf">Neuf</option>
                 <option value="Bon">Bon</option>
                 <option value="Passable">Passable</option>
                 <option value="Abîmé">Abîmé</option>
               </select>
             </div>
-            <div className="input-group">
-              <label>Statut</label>
-              <select className="input-field" value={formData.status} onChange={e => setFormData({ ...formData, status: e.target.value })}>
+            <div className="input-group flex-grow" style={{ flex: 1 }}>
+              <label className="form-label">Statut</label>
+              <select className="input-field-premium" value={formData.status} onChange={e => setFormData({ ...formData, status: e.target.value })}>
                 <option value="Disponible">Disponible</option>
                 <option value="Emprunté">Emprunté</option>
                 <option value="Maintenance">En maintenance</option>
@@ -147,17 +154,18 @@ const CopyForm = ({ mode, books, initialData = null, onSave, onCancel }) => {
               </select>
             </div>
           </div>
-          <div className="form-row full-width">
-            <div className="input-group">
-              <label>Année d'acquisition</label>
-              <input type="number" className="input-field" value={formData.acquisitionYear} onChange={e => setFormData({ ...formData, acquisitionYear: e.target.value })} />
+
+          <div className="input-row" style={{ display: 'flex', gap: '24px' }}>
+            <div className="input-group flex-grow" style={{ flex: 1 }}>
+              <label className="form-label">Année d'acquisition</label>
+              <input type="number" className="input-field-premium" value={formData.acquisitionYear} onChange={e => setFormData({ ...formData, acquisitionYear: e.target.value })} />
             </div>
-            {mode === 'add' && (
-              <div className="input-group">
-                <label>Nombre d'exemplaires</label>
+            {mode === 'add' ? (
+              <div className="input-group flex-grow" style={{ flex: 1 }}>
+                <label className="form-label">Nombre d'exemplaires</label>
                 <input 
                   type="number" 
-                  className="input-field" 
+                  className="input-field-premium" 
                   min="1" 
                   max="50" 
                   value={formData.quantity} 
@@ -165,12 +173,15 @@ const CopyForm = ({ mode, books, initialData = null, onSave, onCancel }) => {
                   required 
                 />
               </div>
-            )}
+            ) : <div className="input-group flex-grow" style={{ flex: 1 }}></div>}
           </div>
         </div>
-        <div className="form-actions">
-          <button type="button" className="btn btn-ghost" onClick={onCancel}>Annuler</button>
-          <button type="submit" className="btn btn-primary"><Save size={18} /> Enregistrer l'exemplaire</button>
+        
+        <div className="form-footer-premium" style={{ marginTop: '40px', padding: '0', background: 'transparent', borderTop: 'none' }}>
+          <button type="button" className="btn btn-ghost" onClick={onCancel} style={{ fontSize: '15px' }}>Annuler</button>
+          <button type="submit" className="btn btn-primary" style={{ padding: '12px 32px', fontSize: '15px' }}>
+            <Save size={18} /> Enregistrer l'exemplaire
+          </button>
         </div>
       </form>
     </div>

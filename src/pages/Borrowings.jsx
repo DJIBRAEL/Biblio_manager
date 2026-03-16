@@ -122,52 +122,62 @@ const NewBorrowForm = ({ users, copies, books, onBorrow, onCancel }) => {
   };
 
   return (
-    <div className="card form-card">
-      <div className="header-with-icon" style={{ padding: '12px 20px', borderBottom: '1px solid #f1f5f9' }}>
-        <div className="icon-box" style={{ background: 'var(--success)' }}>
-          <PlusCircle size={22} />
+    <div className="form-card-premium">
+      <div className="form-header-premium">
+        <div className="icon-box">
+          <PlusCircle size={28} />
         </div>
         <div className="header-content">
-          <h2 style={{ fontSize: '1.25rem', fontWeight: '700', color: 'var(--text-main)', margin: 0 }}>
-            Enregistrer un nouvel emprunt
+          <h2 style={{ fontSize: '1.5rem', fontWeight: '700', color: 'var(--text-main)', margin: 0 }}>
+            Nouvel Emprunt
           </h2>
+          <p style={{ margin: '4px 0 0', color: 'var(--text-muted)' }}>Enregistrez un emprunt pour un lecteur.</p>
         </div>
       </div>
-      <form onSubmit={handleSubmit} className="mt-4">
-        <div className="form-grid">
-          <div className="input-group full-width">
-            <label>Lecteur</label>
-            <select className="input-field" value={formData.userId} onChange={e => setFormData({...formData, userId: e.target.value})} required>
-              <option value="">Sélectionner un lecteur...</option>
-              {users.map(u => (
-                <option key={u.id} value={u.id}>{u.name} ({u.type})</option>
-              ))}
-            </select>
-          </div>
-          <div className="input-group full-width">
-            <label>Exemplaire disponible</label>
-            <select className="input-field" value={formData.copyId} onChange={e => setFormData({...formData, copyId: e.target.value})} required>
-              <option value="">Sélectionner un exemplaire...</option>
-              {copies.filter(c => c.status === 'Disponible').map(c => {
-                const book = books.find(bk => bk.id === c.bookId);
-                return <option key={c.id} value={c.id}>{c.code} - {book?.title}</option>;
-              })}
-            </select>
-          </div>
-          <div className="form-row full-width">
-            <div className="input-group">
-              <label>Date d'emprunt</label>
-              <input type="date" className="input-field" value={formData.borrowDate} onChange={e => setFormData({...formData, borrowDate: e.target.value})} required />
+      <form onSubmit={handleSubmit} className="form-body-premium">
+        <div className="form-group-wrapper">
+          <span className="group-tag-premium">Détails de l'emprunt</span>
+          
+          <div className="input-row mt-4" style={{ display: 'flex', gap: '24px', marginBottom: '24px' }}>
+            <div className="input-group flex-grow" style={{ flex: 1 }}>
+              <label className="form-label">Lecteur</label>
+              <select className="input-field-premium" value={formData.userId} onChange={e => setFormData({...formData, userId: e.target.value})} required>
+                <option value="">Sélectionner un lecteur...</option>
+                {users.map(u => (
+                  <option key={u.id} value={u.id}>{u.name} ({u.type})</option>
+                ))}
+              </select>
             </div>
-            <div className="input-group">
-              <label>Date de retour prévue</label>
-              <input type="date" className="input-field" value={formData.expectedReturnDate} onChange={e => setFormData({...formData, expectedReturnDate: e.target.value})} required />
+            
+            <div className="input-group flex-grow" style={{ flex: 1 }}>
+              <label className="form-label">Exemplaire disponible</label>
+              <select className="input-field-premium" value={formData.copyId} onChange={e => setFormData({...formData, copyId: e.target.value})} required>
+                <option value="">Sélectionner un exemplaire...</option>
+                {copies.filter(c => c.status === 'Disponible').map(c => {
+                  const book = books.find(bk => bk.id === c.bookId);
+                  return <option key={c.id} value={c.id}>{c.code} - {book?.title}</option>;
+                })}
+              </select>
+            </div>
+          </div>
+
+          <div className="input-row" style={{ display: 'flex', gap: '24px' }}>
+            <div className="input-group flex-grow" style={{ flex: 1 }}>
+              <label className="form-label">Date d'emprunt</label>
+              <input type="date" className="input-field-premium" value={formData.borrowDate} onChange={e => setFormData({...formData, borrowDate: e.target.value})} required />
+            </div>
+            <div className="input-group flex-grow" style={{ flex: 1 }}>
+              <label className="form-label">Date de retour prévue</label>
+              <input type="date" className="input-field-premium" value={formData.expectedReturnDate} onChange={e => setFormData({...formData, expectedReturnDate: e.target.value})} required />
             </div>
           </div>
         </div>
-        <div className="form-actions">
-          <button type="button" className="btn btn-ghost" onClick={onCancel}>Annuler</button>
-          <button type="submit" className="btn btn-primary"><Repeat size={18} /> Valider l'emprunt</button>
+        
+        <div className="form-footer-premium" style={{ marginTop: '40px', padding: '0', background: 'transparent', borderTop: 'none' }}>
+          <button type="button" className="btn btn-ghost" onClick={onCancel} style={{ fontSize: '15px' }}>Annuler</button>
+          <button type="submit" className="btn btn-primary" style={{ padding: '12px 32px', fontSize: '15px' }}>
+            <Repeat size={18} /> Valider l'emprunt
+          </button>
         </div>
       </form>
     </div>

@@ -32,6 +32,14 @@
 .search-input {
   width: 100%;
   padding-left: 38px;
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  background-color: var(--row-hover-bg);
+}
+
+.search-input:focus {
+  background-color: white;
+  border-color: var(--primary);
 }
 
 .action-buttons {
@@ -56,12 +64,12 @@
 
 .edit-btn:hover {
   color: var(--primary);
-  background-color: rgba(28, 61, 74, 0.1);
+  background-color: rgba(20, 73, 85, 0.1);
 }
 
 .delete-btn:hover {
-  color: var(--danger);
-  background-color: rgba(239, 68, 68, 0.1);
+  color: var(--status-danger);
+  background-color: rgba(225, 91, 91, 0.1);
 }
 
 .close-btn {
@@ -73,12 +81,4 @@
   color: var(--text-main);
 }
 
-.form-grid {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-
-.full-width {
-  width: 100%;
-}
+/* UI adjustments kept as needed */

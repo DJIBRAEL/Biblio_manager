@@ -20,15 +20,17 @@
   font-size: 12px;
 }
 
+/* Component-specific borrowings styles */
+
 .btn-sm {
   padding: 4px 10px;
   font-size: 12px;
 }
 
 .row-late td {
-  background-color: rgba(239, 68, 68, 0.05);
+  background-color: rgba(225, 91, 91, 0.08);
 }
 
 .row-late strong {
-  color: var(--danger);
+  color: var(--status-danger);
 }

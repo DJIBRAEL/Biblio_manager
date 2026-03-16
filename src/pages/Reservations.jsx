@@ -144,26 +144,26 @@ const ReservationForm = ({ users, books, onSave, onCancel }) => {
   };
 
   return (
-    <div className="card form-card-simple">
-      <div className="header-with-icon" style={{ padding: '12px 20px', borderBottom: '1px solid #f1f5f9' }}>
+    <div className="form-card-premium">
+      <div className="form-header-premium">
         <div className="icon-box">
-          <Bookmark size={24} />
+          <Bookmark size={28} />
         </div>
         <div className="header-content">
-          <h2>Créer une réservation</h2>
-          <p>Associez un utilisateur à un ouvrage.</p>
+          <h2 style={{ fontSize: '1.5rem', fontWeight: '700', color: 'var(--text-main)', margin: 0 }}>Créer une réservation</h2>
+          <p style={{ margin: '4px 0 0', color: 'var(--text-muted)' }}>Associez un utilisateur à un ouvrage.</p>
         </div>
       </div>
 
-      <form onSubmit={handleSubmit} className="form-body-simple">
+      <form onSubmit={handleSubmit} className="form-body-premium">
         <div className="form-group-wrapper">
-          <span className="group-tag">Détails de la réservation</span>
+          <span className="group-tag-premium">Détails de la réservation</span>
           
-          <div className="input-row mt-4">
-            <div className="input-group flex-grow">
-              <label>Utilisateur <UserIcon size={14} style={{ display: 'inline', marginLeft: 4, verticalAlign: 'middle' }} /></label>
+          <div className="input-row mt-4" style={{ display: 'flex', gap: '24px', marginBottom: '24px' }}>
+            <div className="input-group flex-grow" style={{ flex: 1 }}>
+              <label className="form-label">Utilisateur <UserIcon size={14} style={{ display: 'inline', marginLeft: 4, verticalAlign: 'middle' }} /></label>
               <select 
-                className="input-field-classy" 
+                className="input-field-premium" 
                 value={formData.userId} 
                 onChange={e => setFormData({ ...formData, userId: e.target.value })} 
                 required
@@ -175,10 +175,10 @@ const ReservationForm = ({ users, books, onSave, onCancel }) => {
               </select>
             </div>
             
-            <div className="input-group flex-grow">
-              <label>Livre <BookOpen size={14} style={{ display: 'inline', marginLeft: 4, verticalAlign: 'middle' }} /></label>
+            <div className="input-group flex-grow" style={{ flex: 1 }}>
+              <label className="form-label">Livre <BookOpen size={14} style={{ display: 'inline', marginLeft: 4, verticalAlign: 'middle' }} /></label>
               <select 
-                className="input-field-classy" 
+                className="input-field-premium" 
                 value={formData.bookId} 
                 onChange={e => setFormData({ ...formData, bookId: e.target.value })} 
                 required
@@ -191,24 +191,24 @@ const ReservationForm = ({ users, books, onSave, onCancel }) => {
             </div>
           </div>
 
-          <div className="input-row mt-4">
+          <div className="input-row mt-4" style={{ display: 'flex', gap: '24px' }}>
             <div className="input-group flex-1">
-              <label>Date de récupération prévue <Calendar size={14} style={{ display: 'inline', marginLeft: 4, verticalAlign: 'middle' }} /></label>
+              <label className="form-label">Date de récupération prévue <Calendar size={14} style={{ display: 'inline', marginLeft: 4, verticalAlign: 'middle' }} /></label>
               <input 
                 type="date" 
-                className="input-field-classy" 
+                className="input-field-premium" 
                 value={formData.reservationDate} 
                 onChange={e => setFormData({ ...formData, reservationDate: e.target.value })} 
                 required 
               />
             </div>
-            <div className="input-group flex-1"></div>
+            <div className="input-group flex-1" style={{ flex: 1 }}></div>
           </div>
         </div>
 
-        <div className="form-footer-simple">
-          <button type="button" className="btn-cancel-simple" onClick={onCancel}>Annuler</button>
-          <button type="submit" className="btn-submit-simple">
+        <div className="form-footer-premium" style={{ marginTop: '40px', padding: '0', background: 'transparent', borderTop: 'none' }}>
+          <button type="button" className="btn-cancel-simple" onClick={onCancel} style={{ fontSize: '15px' }}>Annuler</button>
+          <button type="submit" className="btn-submit-simple" style={{ padding: '12px 32px', fontSize: '15px' }}>
             <span>Enregistrer la réservation</span>
             <ChevronRight size={18} />
           </button>

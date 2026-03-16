@@ -33,9 +33,9 @@
   justify-content: center;
 }
 
-.bg-blue-light { background-color: #e0f2fe; color: #0369a1; }
-.bg-green-light { background-color: #dcfce7; color: #15803d; }
-.bg-red-light { background-color: #fee2e2; color: #b91c1c; }
+.bg-blue-light { background-color: var(--badge-primary-bg, #e0f2fe); color: var(--badge-primary-text, #0369a1); }
+.bg-green-light { background-color: var(--badge-success-bg, #dcfce7); color: var(--badge-success-text, #15803d); }
+.bg-red-light { background-color: var(--badge-danger-bg, #fee2e2); color: var(--badge-danger-text, #b91c1c); }
 
 .stat-content-mini {
   display: flex;
@@ -116,139 +116,7 @@
   white-space: nowrap;
 }
 
-/* Simple & Classy Form Styles */
-.form-card-simple {
-  max-width: 100%;
-  margin: 0;
-  border-radius: 8px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-  overflow: hidden;
-  background: white;
-}
-
-.form-header-simple {
-  padding: 40px;
-  background: linear-gradient(to right, #f8fafc, #ffffff);
-  display: flex;
-  align-items: center;
-  gap: 20px;
-  border-bottom: 1px solid #f1f5f9;
-}
-
-.icon-badge-primary {
-  width: 56px;
-  height: 56px;
-  border-radius: 8px;
-  background: var(--primary);
-  color: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.header-text h2 {
-  font-size: 24px;
-  font-weight: 700;
-  color: #1e293b;
-  margin: 0;
-}
-
-.header-text p {
-  font-size: 14px;
-  color: #64748b;
-  margin: 4px 0 0 0;
-}
-
-.form-body-simple {
-  padding: 40px;
-}
-
-.form-group-wrapper {
-  margin-bottom: 40px;
-  position: relative;
-}
-
-.group-tag {
-  display: inline-block;
-  font-size: 11px;
-  font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  color: white;
-  background: var(--primary);
-  padding: 4px 12px;
-  border-radius: 4px;
-  margin-bottom: 24px;
-}
-
-.input-row {
-  display: flex;
-  gap: 24px;
-}
-
-.input-field-classy {
-  width: 100%;
-  padding: 12px 16px;
-  border-radius: 6px;
-  border: 1px solid #e2e8f0;
-  font-size: 15px;
-  transition: all 0.2s;
-  background: #f8fafc;
-}
-
-.input-field-classy:focus {
-  outline: none;
-  border-color: var(--primary);
-  background: white;
-  box-shadow: 0 0 0 4px var(--primary-light);
-}
-
-.flex-grow { flex: 1; }
-.flex-1 { flex: 1; }
-.flex-2 { flex: 2; }
-
-.form-footer-simple {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  gap: 12px;
-  margin-top: 20px;
-}
-
-.btn-cancel-simple {
-  background: transparent;
-  border: none;
-  color: #94a3b8;
-  font-weight: 600;
-  cursor: pointer;
-  transition: color 0.2s;
-}
-
-.btn-cancel-simple:hover {
-  color: #ef4444;
-}
-
-.btn-submit-simple {
-  padding: 14px 28px;
-  background: var(--primary);
-  color: white;
-  border: none;
-  border-radius: 6px;
-  font-weight: 700;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  cursor: pointer;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-  transition: all 0.2s;
-}
-
-.btn-submit-simple:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(0,0,0,0.15);
-}
-
-.mt-4 { margin-top: 16px; }
+/* Responsive adjustments moved to index.css or kept as needed */
 
 /* Rich User Types Grid */
 .types-grid-rich {

@@ -153,126 +153,114 @@ const UserForm = ({ onSave, onCancel }) => {
   };
 
   return (
-    <div className="card form-card-simple">
-      <div className="header-with-icon" style={{ padding: '30px 40px', borderBottom: '1px solid #f1f5f9' }}>
+    <div className="form-card-premium">
+      <div className="form-header-premium">
         <div className="icon-box">
-          <UserPlus size={24} />
+          <UserPlus size={28} />
         </div>
         <div className="header-content">
-          <h2>Créer un utilisateur</h2>
-          <p>Remplissez les informations pour ajouter un nouveau membre.</p>
+          <h2 style={{ fontSize: '1.5rem', fontWeight: '700', color: 'var(--text-main)', margin: 0 }}>Créer un utilisateur</h2>
+          <p style={{ margin: '4px 0 0', color: 'var(--text-muted)' }}>Remplissez les informations pour ajouter un nouveau membre.</p>
         </div>
       </div>
 
-      <form onSubmit={handleSubmit} className="form-body-simple">
-        <div className="form-grid-classy">
-          {/* Identité */}
-          <div className="form-group-wrapper">
-            <span className="group-tag">Identité</span>
-            <div className="input-row">
-              <div className="input-group">
-                <label>Civilité</label>
-                <select className="input-field-classy" value={formData.civility} onChange={e => setFormData({ ...formData, civility: e.target.value })}>
-                  <option value="M.">M.</option>
-                  <option value="Mme">Mme</option>
-                  <option value="Mlle">Mlle</option>
-                </select>
-              </div>
-              <div className="input-group flex-grow">
-                <label>Prénom</label>
-                <input type="text" className="input-field-classy" value={formData.firstName} onChange={e => setFormData({ ...formData, firstName: e.target.value })} placeholder="Ex: Djibrael" required />
-              </div>
-              <div className="input-group flex-grow">
-                <label>Nom</label>
-                <input type="text" className="input-field-classy" value={formData.lastName} onChange={e => setFormData({ ...formData, lastName: e.target.value })} placeholder="Ex: TRAORÉ" required />
-              </div>
+      <form onSubmit={handleSubmit} className="form-body-premium">
+        <div className="form-group-wrapper">
+          <span className="group-tag-premium">Identité</span>
+          <div className="input-row" style={{ display: 'flex', gap: '24px', marginBottom: '24px' }}>
+            <div className="input-group" style={{ width: '120px' }}>
+              <label className="form-label">Civilité</label>
+              <select className="input-field-premium" value={formData.civility} onChange={e => setFormData({ ...formData, civility: e.target.value })}>
+                <option value="M.">M.</option>
+                <option value="Mme">Mme</option>
+                <option value="Mlle">Mlle</option>
+              </select>
             </div>
-
-            <div className="input-row mt-4">
-              <div className="input-group">
-                <label>Date de naissance</label>
-                <input type="date" className="input-field-classy" value={formData.birthday} onChange={e => setFormData({ ...formData, birthday: e.target.value })} />
-              </div>
-              <div className="input-group">
-                <label>Nationalité</label>
-               <select className="input-field-classy" value={formData.nationality} onChange={e => setFormData({ ...formData, nationality: e.target.value })}>
-                  <option value="Mali">Mali</option>
-                  <option value="Sénégal">Sénégal</option>
-                  <option value="Côte d'Ivoire">Côte d'Ivoire</option>
-                  <option value="Bénin">Bénin</option>
-                  <option value="Burkina Faso">Burkina Faso</option>
-                  <option value="Cameroon">Cameroun</option>
-                   <option value="Congo">Congo</option>
-                   
-                </select>
-              </div>
+            <div className="input-group flex-grow" style={{ flex: 1 }}>
+              <label className="form-label">Prénom</label>
+              <input type="text" className="input-field-premium" value={formData.firstName} onChange={e => setFormData({ ...formData, firstName: e.target.value })} placeholder="Ex: Djibrael" required />
+            </div>
+            <div className="input-group flex-grow" style={{ flex: 1 }}>
+              <label className="form-label">Nom</label>
+              <input type="text" className="input-field-premium" value={formData.lastName} onChange={e => setFormData({ ...formData, lastName: e.target.value })} placeholder="Ex: TRAORÉ" required />
             </div>
           </div>
 
-          {/* Contact */}
-          <div className="form-group-wrapper">
-            <span className="group-tag">Contact & Système</span>
-            <div className="input-row">
-              <div className="input-group flex-2">
-                <label>Email professionnel</label>
-                <input type="email" className="input-field-classy" value={formData.email} onChange={e => setFormData({ ...formData, email: e.target.value })} placeholder="exemple@univ.edu" required />
-              </div>
-              <div className="input-group flex-1">
-  <label>Téléphone</label>
-
-  <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-
-    {/* Indicatif */}
-    <select
-      className="input-field-classy"
-      value={formData.countryCode}
-      onChange={e => setFormData({ ...formData, countryCode: e.target.value })}
-      style={{ width: "120px" }}
-    >
-      <option value="+221">🇸🇳 +221</option>
-      <option value="+223">🇲🇱 +223</option>
-      <option value="+225">🇨🇮 +225</option>
-      <option value="+229">🇧🇯 +229</option>
-      <option value="+226">🇧🇫 +226</option>
-      <option value="+237">🇨🇲 +237</option>
-      <option value="+242">🇨🇬 +242</option>
-
-    </select>
-
-    {/* Numéro téléphone */}
-    <input
-      type="text"
-      className="input-field-classy"
-      value={formData.phone}
-      onChange={e => setFormData({ ...formData, phone: e.target.value })}
-      placeholder=""
-      style={{ flex: 1 }}
-    />
-
-</div>
-</div>
-</div>
-
-            <div className="input-row mt-4">
-              <div className="input-group flex-2">
-                <label>Adresse</label>
-                <input type="text" className="input-field-classy" value={formData.address} onChange={e => setFormData({ ...formData, address: e.target.value })} placeholder="Adresse complète..." />
-              </div>
-              <div className="input-group flex-1">
-                <label>Type d'utilisateur</label>
-                <select className="input-field-classy" value={formData.type} onChange={e => setFormData({ ...formData, type: e.target.value })}>
-                  <option value="Etudiant">🎓 Étudiant</option>
-                  <option value="Professeur">📚 Professeur</option>
-                  <option value="Personnel administratif">🏢 Personnel administratif</option>
-                </select>
-              </div>
+          <div className="input-row" style={{ display: 'flex', gap: '24px' }}>
+            <div className="input-group flex-grow" style={{ flex: 1 }}>
+              <label className="form-label">Date de naissance</label>
+              <input type="date" className="input-field-premium" value={formData.birthday} onChange={e => setFormData({ ...formData, birthday: e.target.value })} />
+            </div>
+            <div className="input-group flex-grow" style={{ flex: 1 }}>
+              <label className="form-label">Nationalité</label>
+              <select className="input-field-premium" value={formData.nationality} onChange={e => setFormData({ ...formData, nationality: e.target.value })}>
+                <option value="Mali">Mali</option>
+                <option value="Sénégal">Sénégal</option>
+                <option value="Côte d'Ivoire">Côte d'Ivoire</option>
+                <option value="Bénin">Bénin</option>
+                <option value="Burkina Faso">Burkina Faso</option>
+                <option value="Cameroon">Cameroun</option>
+                <option value="Congo">Congo</option>
+              </select>
             </div>
           </div>
         </div>
 
-        <div className="form-footer-simple">
-          <button type="button" className="btn-cancel-simple" onClick={onCancel}>Annuler</button>
-          <button type="submit" className="btn-submit-simple">
+        <div className="form-group-wrapper" style={{ marginTop: '40px' }}>
+          <span className="group-tag-premium">Contact & Système</span>
+          <div className="input-row" style={{ display: 'flex', gap: '24px', marginBottom: '24px' }}>
+            <div className="input-group flex-2" style={{ flex: 2 }}>
+              <label className="form-label">Email professionnel</label>
+              <input type="email" className="input-field-premium" value={formData.email} onChange={e => setFormData({ ...formData, email: e.target.value })} placeholder="exemple@univ.edu" required />
+            </div>
+            <div className="input-group flex-1" style={{ flex: 1 }}>
+              <label className="form-label">Téléphone</label>
+              <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+                <select
+                  className="input-field-premium"
+                  value={formData.countryCode}
+                  onChange={e => setFormData({ ...formData, countryCode: e.target.value })}
+                  style={{ width: "120px" }}
+                >
+                  <option value="+221">🇸🇳 +221</option>
+                  <option value="+223">🇲🇱 +223</option>
+                  <option value="+225">🇨🇮 +225</option>
+                  <option value="+229">🇧🇯 +229</option>
+                  <option value="+226">🇧🇫 +226</option>
+                  <option value="+237">🇨🇲 +237</option>
+                  <option value="+242">🇨🇬 +242</option>
+                </select>
+                <input
+                  type="text"
+                  className="input-field-premium"
+                  value={formData.phone}
+                  onChange={e => setFormData({ ...formData, phone: e.target.value })}
+                  placeholder="Numéro"
+                  style={{ flex: 1 }}
+                />
+              </div>
+            </div>
+          </div>
+
+          <div className="input-row" style={{ display: 'flex', gap: '24px' }}>
+            <div className="input-group flex-2" style={{ flex: 2 }}>
+              <label className="form-label">Adresse</label>
+              <input type="text" className="input-field-premium" value={formData.address} onChange={e => setFormData({ ...formData, address: e.target.value })} placeholder="Adresse complète..." />
+            </div>
+            <div className="input-group flex-1" style={{ flex: 1 }}>
+              <label className="form-label">Type d'utilisateur</label>
+              <select className="input-field-premium" value={formData.type} onChange={e => setFormData({ ...formData, type: e.target.value })}>
+                <option value="Etudiant">🎓 Étudiant</option>
+                <option value="Professeur">📚 Professeur</option>
+                <option value="Personnel administratif">🏢 Personnel administratif</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div className="form-footer-premium" style={{ marginTop: '40px', padding: '0', background: 'transparent', borderTop: 'none' }}>
+          <button type="button" className="btn-cancel-simple" onClick={onCancel} style={{ fontSize: '15px' }}>Annuler</button>
+          <button type="submit" className="btn-submit-simple" style={{ padding: '12px 32px', fontSize: '15px' }}>
             <span>Enregistrer l'utilisateur</span>
             <ChevronRight size={18} />
           </button>
