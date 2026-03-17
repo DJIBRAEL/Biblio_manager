@@ -417,7 +417,7 @@ const BookDetail = ({ book, copies, borrowings, users, onBack, onEdit, onDelete,
                         {copy.status === 'Disponible' ? 'Disponible' : 'Prêté'}
                       </span>
                     </td>
-                    <td>{borrower || (copy.status === 'Disponible' ? 'BIO OUROU' : '—')}</td>
+                    <td>{borrower || '—'}</td>
                   </tr>
                 );
               })
