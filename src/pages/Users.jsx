@@ -211,6 +211,8 @@ const UserForm = ({ onSave, onCancel }) => {
                   <option value="Sénégal">Sénégal</option>
                   <option value="Côte d'Ivoire">Côte d'Ivoire</option>
                   <option value="Bénin">Bénin</option>
+                  <option value="Niger">Niger</option>
+                  <option value="Togo">Togo</option>
                   <option value="Burkina Faso">Burkina Faso</option>
                 </select>
                 <Globe size={18} className="input-icon-premium" />
@@ -233,9 +235,13 @@ const UserForm = ({ onSave, onCancel }) => {
               <label className="form-label">Numéro de Téléphone</label>
               <div style={{ display: "flex", gap: "8px" }}>
                 <select className="input-field-premium" value={formData.countryCode} onChange={e => setFormData({ ...formData, countryCode: e.target.value })} style={{ width: '110px' }}>
-                  <option value="+223">🇲🇱 +223</option>
-                  <option value="+221">🇸🇳 +221</option>
-                  <option value="+225">🇨🇮 +225</option>
+                  <option value="+223">+223</option>
+                  <option value="+221">+221</option>
+                  <option value="+225">+225</option>
+                  <option value="+226">+226</option>
+                  <option value="+227">+227</option>
+                  <option value="+228">+228</option>
+                  <option value="+229">+229</option>
                 </select>
                 <div className="input-icon-wrapper-premium" style={{ flex: 1 }}>
                   <input type="text" className="input-field-premium input-with-icon-premium" value={formData.phone} onChange={e => setFormData({ ...formData, phone: e.target.value })} placeholder="00 00 00 00" />

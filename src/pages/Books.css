@@ -189,38 +189,68 @@
   box-shadow: 0 4px 12px rgba(20, 73, 85, 0.2);
 }
 
-/* Badge Refinement */
-.badge-primary {
-  background-color: #e0f2fe;
-  color: #0369a1;
-  font-weight: 600;
-  padding: 4px 12px;
-  border-radius: 8px;
+/* Table Specific Adjustments */
+.table-container {
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.03);
 }
 
-/* Table Specific Adjustments */
 .table-container table {
   width: 100%;
   border-collapse: separate;
   border-spacing: 0;
+  background-color: white;
 }
 
 .table-container th {
+  background-color: #f8fafc; /* Refined light gray background */
   padding: 16px 20px;
   font-size: 11px;
+  font-weight: 700;
   letter-spacing: 0.1em;
   color: #64748b;
+  text-transform: uppercase;
   border-bottom: 2px solid #f1f5f9;
 }
 
 .table-container td {
-  padding: 18px 20px;
+  padding: 20px 20px; /* Increased row height */
   vertical-align: middle;
+  border-bottom: 1px solid #f1f5f9;
 }
 
+.table-container tr:last-child td {
+  border-bottom: none;
+}
+
+/* Stock Column Polish */
 .col-stock {
   text-align: center;
-  width: 140px;
+  width: 150px;
+}
+
+.col-stock .stock-cell {
+  justify-content: center;
+  font-weight: 500;
+  color: #334155;
+}
+
+.col-stock .stock-cell strong {
+  font-weight: 800;
+  color: #1e293b;
+}
+
+/* Badge Refinement */
+.badge-primary {
+  background-color: #f0f7ff; /* Lighter blue */
+  color: #0284c7; /* Vibrant blue */
+  font-weight: 700;
+  padding: 6px 14px;
+  border-radius: 8px;
+  font-size: 12px;
+  border: 1px solid #e0f2fe;
 }
 
 /* Modern Book Cards */
