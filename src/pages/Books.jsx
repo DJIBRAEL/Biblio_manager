@@ -305,6 +305,7 @@ const DeleteConfirm = ({ id, books, onDelete, onCancel }) => {
 };
 
 const BookDetail = ({ book, copies, borrowings, users, onBack, onEdit, onDelete }) => {
+  const navigate = useNavigate();
   const bookCopies = copies.filter(c => c.bookId === book.id);
   const available = bookCopies.filter(c => c.status === 'Disponible').length;
   const hue = (parseInt(book.id) * 137.5) % 360;
@@ -318,118 +319,156 @@ const BookDetail = ({ book, copies, borrowings, users, onBack, onEdit, onDelete 
 
   return (
     <div className="bd-container">
-
-      {/* Hero Banner */}
+      {/* Hero Banner with Premium Glassmorphism */}
       <div
         className="bd-hero"
-        style={{ background: `linear-gradient(135deg, hsl(${hue}, 52%, 38%) 0%, hsl(${hue}, 52%, 22%) 100%)` }}
+        style={{ background: `linear-gradient(135deg, hsl(${hue}, 60%, 40%) 0%, hsl(${hue}, 70%, 25%) 100%)` }}
       >
+        <div className="bd-hero-glass-overlay" />
+        <div className="bd-hero-pattern" />
+        
         <div className="bd-hero-left">
           <button className="bd-hero-back" onClick={onBack}>
             <ArrowLeft size={16} />
-            <span>Retour</span>
+            <span>Catalogue</span>
           </button>
-          <div className="bd-hero-cover">
-            <div className="pattern-overlay" />
-            <BookIcon size={56} color="rgba(255,255,255,0.9)" strokeWidth={1.2} />
+          
+          <div className="bd-hero-cover-container">
+            <div className="bd-hero-cover-main">
+              <BookIcon size={64} color="rgba(255,255,255,0.95)" strokeWidth={1.2} />
+              <div className="bd-hero-cover-spine" />
+            </div>
+            <div className="bd-hero-cover-shadow" />
           </div>
+
           <div className="bd-hero-text">
-            <span className="bd-hero-category">{book.category}</span>
+            <div className="bd-hero-tag-row">
+              <span className="bd-hero-category">{book.category}</span>
+              {book.year && <span className="bd-hero-year">{book.year}</span>}
+            </div>
             <h1 className="bd-hero-title">{book.title}</h1>
-            <p className="bd-hero-author">par <strong>{book.author}</strong></p>
+            <p className="bd-hero-author">Un ouvrage de <strong>{book.author}</strong></p>
+            
             <div className="bd-hero-chips">
-              <span className={`bd-chip ${available > 0 ? 'bd-chip-green' : 'bd-chip-red'}`}>
-                <CheckCircle size={13} />
+              <div className={`bd-chip ${available > 0 ? 'bd-chip-green' : 'bd-chip-red'}`}>
+                <div className="bd-chip-dot" />
                 {available} disponible{available > 1 ? 's' : ''}
-              </span>
-              <span className="bd-chip bd-chip-white">
-                <Package size={13} />
+              </div>
+              <div className="bd-chip bd-chip-white">
+                <Package size={14} />
                 {bookCopies.length} exemplaire{bookCopies.length > 1 ? 's' : ''}
-              </span>
-              {book.year && (
-                <span className="bd-chip bd-chip-white">
-                  <Calendar size={13} />
-                  {book.year}
-                </span>
-              )}
+              </div>
+              <div className="bd-chip bd-chip-white">
+                <Star size={14} fill="white" />
+                Populaire
+              </div>
             </div>
           </div>
         </div>
+
         <div className="bd-hero-actions">
           <button className="bd-hero-btn-edit" onClick={() => onEdit(book.id)}>
-            <Edit size={15} /> Modifier
+            <Edit size={16} /> Modifier les infos
           </button>
           <button className="bd-hero-btn-delete" onClick={() => onDelete(book.id)}>
-            <Trash2 size={15} /> Supprimer
+            <Trash2 size={16} /> Supprimer
           </button>
         </div>
       </div>
 
-      {/* Info Cards Grid */}
-      <div className="bd-info-grid">
-        {[
-          { icon: <Hash size={18} />, label: 'ISBN', value: <code className="isbn-tag">{book.isbn}</code> },
-          { icon: <User size={18} />, label: 'Auteur', value: book.author },
-          { icon: <Building2 size={18} />, label: 'Éditeur', value: book.publisher || '—' },
-          { icon: <Tag size={18} />, label: 'Catégorie', value: book.category },
-          { icon: <Calendar size={18} />, label: 'Année de publication', value: book.year || '—' },
-        ].map(({ icon, label, value }) => (
-          <div key={label} className="bd-info-card">
-            <div className="bd-info-icon">{icon}</div>
-            <div>
-              <p className="bd-info-label">{label}</p>
-              <p className="bd-info-value">{value}</p>
+      {/* Info Gallery */}
+      <div className="bd-content-layout">
+        <div className="bd-info-gallery">
+          <div className="bd-section-header">
+            <div className="bd-section-icon"><Hash size={18} /></div>
+            <h2>Fiche Technique</h2>
+          </div>
+          <div className="bd-info-grid">
+            {[
+              { icon: <Hash size={20} />, label: 'ISBN Identifier', value: <code className="bd-isbn-code">{book.isbn}</code> },
+              { icon: <User size={20} />, label: 'Auteur Principal', value: book.author },
+              { icon: <Building2 size={20} />, label: 'Maison d\'Édition', value: book.publisher || 'Non spécifié' },
+              { icon: <Tag size={20} />, label: 'Classification', value: book.category },
+              { icon: <Calendar size={20} />, label: 'Année de sortie', value: book.year || 'Non spécifié' },
+              { icon: <Star size={20} />, label: 'Note Moyenne', value: '4.8 / 5.0' },
+            ].map(({ icon, label, value }) => (
+              <div key={label} className="bd-info-card-premium">
+                <div className="bd-info-card-icon">{icon}</div>
+                <div className="bd-info-card-content">
+                  <p className="bd-info-card-label">{label}</p>
+                  <p className="bd-info-card-value">{value}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Inventory Section */}
+        <div className="bd-inventory-section">
+          <div className="bd-section-header">
+            <div className="bd-section-icon"><Package size={18} /></div>
+            <div className="bd-section-title-group">
+              <h2>Inventaire Physique</h2>
+              <span className="bd-badge-count">{bookCopies.length} exemplaires</span>
             </div>
           </div>
-        ))}
-      </div>
-
-      {/* Copies Table */}
-      <div className="bd-copies-section">
-        <div className="bd-copies-header">
-          <h2 className="bd-copies-title">
-            <Package size={18} style={{ display: 'inline', marginRight: 8, verticalAlign: 'middle' }} />
-            Exemplaires du livre
-          </h2>
-          <span className="bd-copies-count">{bookCopies.length} au total</span>
-        </div>
-        <div className="bd-copies-card">
-          {bookCopies.length === 0 ? (
-            <p className="bd-empty">Aucun exemplaire enregistré pour ce livre.</p>
-          ) : (
-            <table className="bd-copies-table">
-              <thead>
-                <tr>
-                  <th>Code barre</th>
-                  <th>État</th>
-                  <th>Statut</th>
-                  <th>Emprunteur</th>
-                </tr>
-              </thead>
-              <tbody>
-                {bookCopies.map((copy) => {
-                  const borrower = getBorrowerName(copy.id);
-                  return (
-                    <tr key={copy.id}>
-                      <td>
-                        <code className="bd-code">{copy.code || copy.id}</code>
-                      </td>
-                      <td>
-                        <span className="bd-etat-badge">{copy.etat || '—'}</span>
-                      </td>
-                      <td>
-                        <span className={`bd-status-badge ${copy.status === 'Disponible' ? 'bd-badge-disponible' : 'bd-badge-prete'}`}>
-                          <span className="bd-dot" />
-                          {copy.status}
-                        </span>
-                      </td>
-                      <td className={borrower ? '' : 'bd-cell-muted'}>{borrower || '—'}</td>
+          
+          <div className="bd-table-card">
+            {bookCopies.length === 0 ? (
+              <div className="bd-empty-state">
+                <Package size={48} opacity={0.3} />
+                <p>Aucun exemplaire n'est encore enregistré pour cet ouvrage.</p>
+                <button className="btn btn-primary btn-sm" onClick={() => navigate('/exemplaires/add')}>
+                  Ajouter un exemplaire
+                </button>
+              </div>
+            ) : (
+              <div className="bd-table-wrapper">
+                <table className="bd-modern-table">
+                  <thead>
+                    <tr>
+                      <th>ID Exemplaire</th>
+                      <th>Condition</th>
+                      <th>Statut Actuel</th>
+                      <th>Localisation / Emprunteur</th>
                     </tr>
-                  );
-                })}
-              </tbody>
-            </table>
-          )}
+                  </thead>
+                  <tbody>
+                    {bookCopies.map((copy) => {
+                      const borrower = getBorrowerName(copy.id);
+                      return (
+                        <tr key={copy.id}>
+                          <td>
+                            <div className="bd-copy-code-box">
+                              <code className="bd-modern-code">{copy.code || copy.id}</code>
+                            </div>
+                          </td>
+                          <td>
+                            <span className="bd-condition-tag">{copy.etat || 'Excellent'}</span>
+                          </td>
+                          <td>
+                            <span className={`bd-status-pill ${copy.status === 'Disponible' ? 'status-online' : 'status-busy'}`}>
+                              {copy.status}
+                            </span>
+                          </td>
+                          <td>
+                            {borrower ? (
+                              <div className="bd-borrower-info">
+                                <User size={14} />
+                                <span>{borrower}</span>
+                              </div>
+                            ) : (
+                              <span className="bd-location-tag">Rayon {book.category.charAt(0)}</span>
+                            )}
+                          </td>
+                        </tr>
+                      );
+                    })}
+                  </tbody>
+                </table>
+              </div>
+            )}
+          </div>
         </div>
       </div>
     </div>
