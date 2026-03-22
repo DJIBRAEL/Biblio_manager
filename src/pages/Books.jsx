@@ -53,7 +53,6 @@ const BookList = ({ books, copies, searchTerm, setSearchTerm, onEdit, onDelete, 
                 <th>Année</th>
                 <th>Catégorie</th>
                 <th className="col-stock">Stock</th>
-                <th>Actions</th>
               </tr>
             </thead>
             <tbody>
@@ -76,16 +75,6 @@ const BookList = ({ books, copies, searchTerm, setSearchTerm, onEdit, onDelete, 
                       <div className="stock-cell">
                         <span className={`stock-indicator ${stock.available > 0 ? 'bg-success' : 'bg-danger'}`}></span>
                         <strong>{stock.available}</strong> / {stock.total} disp.
-                      </div>
-                    </td>
-                    <td onClick={(e) => e.stopPropagation()}>
-                      <div className="action-buttons">
-                        <button className="icon-btn edit-btn" onClick={(e) => { e.stopPropagation(); onEdit(book.id); }} title="Modifier">
-                          <Edit size={16} />
-                        </button>
-                        <button className="icon-btn delete-btn" onClick={(e) => { e.stopPropagation(); onDelete(book.id); }} title="Supprimer">
-                          <Trash2 size={16} />
-                        </button>
                       </div>
                     </td>
                   </tr>

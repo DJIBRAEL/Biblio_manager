@@ -84,7 +84,6 @@ const UserList = ({ users, searchTerm, setSearchTerm, onDelete }) => {
               <th>Téléphone</th>
               <th style={{ textAlign: 'center' }}>Type</th>
               <th>Inscription</th>
-              <th style={{ textAlign: 'center' }}>Actions</th>
             </tr>
           </thead>
           <tbody>
@@ -99,7 +98,7 @@ const UserList = ({ users, searchTerm, setSearchTerm, onDelete }) => {
               };
 
               return (
-                <tr key={user.id} style={{ animationDelay: `${index * 0.05}s` }} className="fade-in-row">
+                <tr key={user.id} style={{ animationDelay: `${index * 0.05}s`, cursor: 'pointer' }} className="fade-in-row user-row-clickable" onClick={() => navigate(`/users/profile/${user.id}`)}>
                   <td className="text-muted text-sm" style={{ fontWeight: '500' }}>{user.matricule || 'N/A'}</td>
                   <td className="font-medium" style={{ color: 'var(--primary)', fontWeight: '600' }}>{firstName}</td>
                   <td className="font-medium text-uppercase" style={{ fontWeight: '700' }}>{lastName}</td>
@@ -109,16 +108,6 @@ const UserList = ({ users, searchTerm, setSearchTerm, onDelete }) => {
                     <span className={`badge ${getBadgeClass(user.type)}`}>{user.type}</span>
                   </td>
                   <td className="text-muted">{user.joinDate ? new Date(user.joinDate).toLocaleDateString() : 'N/A'}</td>
-                  <td style={{ textAlign: 'center' }}>
-                    <div className="action-buttons" style={{ justifyContent: 'center' }}>
-                      <button className="icon-btn" onClick={() => navigate(`/users/profile/${user.id}`)} title="Profil">
-                        <UserCircle size={18} />
-                      </button>
-                      <button className="icon-btn delete-btn" onClick={() => onDelete(user.id)} title="Supprimer">
-                        <Trash2 size={18} />
-                      </button>
-                    </div>
-                  </td>
                 </tr>
               );
             }) : (
